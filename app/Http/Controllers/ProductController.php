@@ -6,15 +6,18 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::where('user_id', auth()->id())->get();
+        $products = Product::where('user_id', Auth::id())->get();
         return Inertia::render('Products/Index', compact('products'));
     }
 
@@ -60,7 +63,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
-        auth()->user()->products()->create($data);
+        $data['user_id'] = Auth::id();
 
         return redirect()->route('products.index');
     }

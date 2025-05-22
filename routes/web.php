@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PublicProductController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -28,5 +29,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class)->except(['create', 'show']);
 });
+
+Route::get('/', [PublicProductController::class, 'index'])->name('public.home');
 
 require __DIR__.'/auth.php';
