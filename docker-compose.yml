@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    container_name: pg-checkout
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - laravel-net
+
+  redis:
+    image: redis:alpine
+    container_name: redis-checkout
+    ports:
+      - "6379:6379"
+    networks:
+      - laravel-net
+
+volumes:
+  pgdata:
+
+networks:
+  laravel-net:
