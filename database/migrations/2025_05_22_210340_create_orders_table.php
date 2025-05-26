@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('customer_email');
             $table->text('customer_address');
+            $table->string('reference');
             $table->string('status')->default('pending');
+            $table->decimal('total_amount', 10, 2);
             $table->timestamps();
         });
     }

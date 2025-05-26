@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PublicProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Webhook\PaymentWebhookController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -33,6 +34,8 @@ Route::post('/checkout/{product}', [CheckoutController::class, 'createCheckoutSe
 
 Route::get('/checkout/success/{product}', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+
+Route::post('/webhook/payment', [PaymentWebhookController::class, 'handle']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
