@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('products', ProductController::class)->except(['create', 'show']);
+    Route::resource('products', ProductController::class);
 });
 
 Route::get('/', [PublicProductController::class, 'index'])->name('public.home');

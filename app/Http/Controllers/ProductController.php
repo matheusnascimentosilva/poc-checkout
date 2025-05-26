@@ -65,6 +65,9 @@ class ProductController extends Controller
 
         $data['user_id'] = Auth::id();
 
+        Product::create($data);
+        session()->flash('success', 'Product created successfully.');
+
         return redirect()->route('products.index');
     }
 
