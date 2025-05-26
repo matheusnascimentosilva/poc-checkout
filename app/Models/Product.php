@@ -19,7 +19,7 @@ class Product extends Model
             $product->id = (string) Str::uuid();
         });
     }
-    protected $fillable = ['name', 'description', 'photo', 'price'];
+    protected $fillable = ['name', 'description', 'photo', 'price','user_id'];
 
     public function user()
     {

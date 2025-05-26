@@ -23,13 +23,17 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $this->authorize('update', $product);
+        if (Auth::id() !== $product->user_id) {
+            abort(403, 'Não autorizado.');
+        }
         return Inertia::render('Products/Edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
     {
-        $this->authorize('update', $product);
+        if (Auth::id() !== $product->user_id) {
+            abort(403, 'Não autorizado.');
+        }
 
         $data = $request->validate([
             'name' => 'required',
@@ -69,6 +73,11 @@ class ProductController extends Controller
         session()->flash('success', 'Product created successfully.');
 
         return redirect()->route('products.index');
+    }
+
+    public function create()
+    {
+        return Inertia::render('Products/Create');
     }
 
 }
