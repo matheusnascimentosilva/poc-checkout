@@ -43,10 +43,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Rota para acessar o painel de administração dos produtos
 Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
 });
 
+// Rota para acessar os produtos públicos
 Route::get('/', [PublicProductController::class, 'index'])->name('public.home');
 
 require __DIR__.'/auth.php';
