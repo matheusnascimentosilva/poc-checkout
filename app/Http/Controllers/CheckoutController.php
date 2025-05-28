@@ -4,14 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\User;
-
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Support\Str;
-use Stripe\Stripe;
-use Stripe\Checkout\Session;
+
 
 class CheckoutController extends Controller
 {
