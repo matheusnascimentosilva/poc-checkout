@@ -11,7 +11,7 @@ class Product extends Model
     use HasFactory;
 
     public $incrementing = false;
-    protected $keyType ='string';
+    protected $keyType = 'string';
 
     protected static function booted()
     {
@@ -19,6 +19,7 @@ class Product extends Model
             $product->id = (string) Str::uuid();
         });
     }
+    protected $primaryKey = 'id';
     protected $fillable = ['name', 'description', 'photo', 'price','user_id'];
 
     public function user()

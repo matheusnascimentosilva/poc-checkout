@@ -15,15 +15,17 @@ use Stripe\Checkout\Session;
 
 class CheckoutController extends Controller
 {
-    public function show($uuid)
+    public function show($id)
     {
-        $product = Product::where('uuid', $uuid)->firstOrFail();
-        return Inertia::render('Public/Checkout', compact('product'));
+        $product = Product::findOrFail($id);
+        return Inertia::render('Checkout/Show', [
+            'product' => $product,
+        ]);
     }
 
-    public function store(Request $request, $uuid)
+    public function store(Request $request, $id)
     {
-        $product = Product::where('uuid', $uuid)->firstOrFail();
+        $product = Product::findOrFail($id);
 
         $data = $request->validate([
             'name' => 'required|string',
@@ -31,7 +33,7 @@ class CheckoutController extends Controller
             'address' => 'required|string',
         ]);
 
-        Order::create([
+        $order = Order::create([
             'product_id' => $product->id,
             'customer_name' => $data['name'],
             'customer_email' => $data['email'],

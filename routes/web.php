@@ -23,8 +23,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/buy/{uuid}', [CheckoutController::class, 'show'])->name('checkout.show');
-Route::post('/buy/{uuid}', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/buy/{id}', [CheckoutController::class, 'show'])->name('checkout.show');
+Route::post('/buy/{id}', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
