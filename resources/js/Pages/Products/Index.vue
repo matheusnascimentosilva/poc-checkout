@@ -9,6 +9,12 @@
       >
         + Novo Produto
       </Link>
+      <Link
+        href="/orders"
+        class="inline-block ml-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
+        Minhas Compras
+      </Link>
     </div>
 
     <div class="overflow-x-auto">
