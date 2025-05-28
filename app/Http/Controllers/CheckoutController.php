@@ -43,37 +43,4 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.show', $product->uuid)->with('success', 'Pedido realizado com sucesso!');
     }
 
-    public function createCheckoutSession(Product $product)
-    {
-        Stripe::setApiKey(config('services.stripe.secret'));
-
-        $session = Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'usd', // ou 'brl'
-                    'product_data' => [
-                        'name' => $product->name,
-                    ],
-                    'unit_amount' => $product->price * 100, // em centavos
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => route('checkout.success', ['product' => $product->id]),
-            'cancel_url' => route('checkout.cancel'),
-        ]);
-
-        return redirect($session->url);
-    }
-
-    public function success(Product $product)
-    {
-        return view('checkout.success', compact('product'));
-    }
-
-    public function cancel()
-    {
-        return view('checkout.cancel');
-    }
 }
