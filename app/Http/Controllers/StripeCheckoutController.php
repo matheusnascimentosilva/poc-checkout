@@ -13,6 +13,7 @@ class StripeCheckoutController extends Controller
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
+        $product = Product::findOrFail($request->input('product_id'));
         $quantity = $request->input('quantity', 1);
 
         $session = Session::create([
@@ -21,17 +22,17 @@ class StripeCheckoutController extends Controller
                 'price_data' => [
                     'currency' => 'brl',
                     'product_data' => [
-                        'name' => $request->input('product_name'),
+                        'name' => $product->name,
                     ],
-                    'unit_amount' => $request->input('product_price') * 100, // Convert to cents
+                    'unit_amount' => $product->price * 100, // Convert to cents
                 ],
                 'quantity' => $quantity,
             ]],
             'mode' => 'payment',
-            'success_url' => route('checkout.success', ['product' => $request->input('product_id')]),
-            'cancel_url' => route('checkout.cancel'),
+            'success_url' => route('checkout.success', ['product' => $product->id]),
+            'cancel_url' => route('checkout.cancel', ['product' => $product->id]),
         ]);
 
-        return response()->json(['id' => $session->id]);
+        return response()->json(['url' => $session->url]);
     }
 }

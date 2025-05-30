@@ -123,9 +123,11 @@
 import { ref } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 import { ShoppingCartIcon, StarIcon } from 'lucide-vue-next';
+import axios from 'axios';
 
-defineProps({
-    product: Object,
+
+const props = defineProps({
+  product: Object,
 });
 
 const form = useForm({
@@ -143,27 +145,24 @@ function submitCheckout() {
             router.visit(route('checkout.success', product.id));
         },
         onError: (errors) => {
-            console.error('Erro no checkout:', errors);
+            router.visit(route('checkout.cancel', product.id));
         },
     });
 }
 
 function startStripeCheckout() {
-    form.product_id = product.id;
-
-    router.post(route('checkout.create', product.id), {
+    axios.post(route('checkout.create', props.product.id), {
+        product_id: props.product.id,
+        product_name: props.product.name,
+        product_price: props.product.price,
         quantity: form.quantity,
-    }, {
-        preserveScroll: true,
-        onSuccess: (page) => {
-            const url = page.props?.url || page?.url;
-            if (url) {
-                window.location.href = url;
-            }
-        },
-        onError: (errors) => {
-            console.error('Erro ao iniciar o checkout com Stripe:', errors);
-        },
+    }).then(response => {
+        const url = response.data?.url;
+        if (url) {
+            window.location.href = url;
+        }
+    }).catch(error => {
+        console.error('Erro ao iniciar o checkout com Stripe:', error);
     });
 }
 </script>

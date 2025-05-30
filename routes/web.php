@@ -9,6 +9,7 @@ use App\Http\Controllers\PublicProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StripeCheckoutController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\Webhook\PaymentWebhookController;
 
 Route::get('/', function () {
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
 Route::post('/checkout/{product}', [CheckoutController::class, 'createCheckoutSession'])->name('checkout.create');
 
 Route::post('/checkout/create/{product}', [StripeCheckoutController::class, 'create'])->name('checkout.create');
+
+Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 
 Route::get('/checkout/success/{product}', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
