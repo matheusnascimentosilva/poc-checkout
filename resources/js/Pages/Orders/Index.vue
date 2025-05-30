@@ -56,7 +56,7 @@ function applyFilters() {
             <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
             <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Valor</th>
             <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Data</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700"></th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Ações</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
@@ -103,7 +103,7 @@ function applyFilters() {
           <p><strong>Endereço:</strong> {{ selectedOrder.customer_address }}</p>
           <p><strong>Referência:</strong> {{ selectedOrder.reference }}</p>
           <p><strong>Status:</strong> {{ selectedOrder.status.label }}</p>
-          <p><strong>Total:</strong> R$ {{ selectedOrder.total_amount.toFixed(2) }}</p>
+          <p><strong>Total:</strong> R$ {{ Number(selectedOrder.total_amount).toFixed(2) }}</p>
           <p><strong>Data:</strong> {{ new Date(selectedOrder.created_at).toLocaleString() }}</p>
         </div>
       </div>
