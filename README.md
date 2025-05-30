@@ -35,3 +35,17 @@ Senha: senha123
 - Redis
 - Tailwindcss
 - Laravel Breeze
+
+## Imagens
+### Tela de produtos
+![image](https://github.com/user-attachments/assets/9c4e387f-a8a1-4321-9d9b-44cd74d3e082)
+### Pedidos Recebidos
+![image](https://github.com/user-attachments/assets/ca119614-f446-4c5a-a00b-b53b65394f4f)
+### CRUD de Produtos
+![image](https://github.com/user-attachments/assets/1d145c66-20f8-4eb6-9de9-9a734fc616d9)
+### Dash
+![image](https://github.com/user-attachments/assets/56f7ac0d-7823-409a-afd2-9d14b4a3fc96)
+### Novo produto
+![image](https://github.com/user-attachments/assets/84564e7a-ad0f-4eac-9bd1-e4af031cc631)
+
+
