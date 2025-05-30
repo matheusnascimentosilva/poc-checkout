@@ -16,11 +16,11 @@
 
 ## Rotas usadas no projeto
 
-http://localhost:8000 = Página de produtos
-http://localhost:8000/login = Página de login do vendedor
-http://localhost:8000/register = Página de registro do vendedor
-http://localhost:8000/products = Página de produtos do vendedor
-http://localhost:8000/orders = Página de pedidos do vendedor
+ - http://localhost:8000 = Página de produtos
+ - http://localhost:8000/login = Página de login do vendedor
+ - http://localhost:8000/register = Página de registro do vendedor
+ - http://localhost:8000/products = Página de produtos do vendedor
+ - http://localhost:8000/orders = Página de pedidos do vendedor
 
 
 ## Usuário de teste:
