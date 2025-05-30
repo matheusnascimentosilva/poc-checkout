@@ -14,10 +14,24 @@
 10. Link do login: http://localhost:8000/login
 11. Link para criar uma conta: http://localhost:8000/register
 
+## Rotas usadas no projeto
+
+http://localhost:8000 = Página de produtos
+http://localhost:8000/login = Página de login do vendedor
+http://localhost:8000/register = Página de registro do vendedor
+http://localhost:8000/products = Página de produtos do vendedor
+http://localhost:8000/orders = Página de pedidos do vendedor
+
+
 ## Usuário de teste:
 Email: vendedor@teste.com
 Senha: senha123
 
-## Observações:
-- O projeto ainda está em desenvolvimento e possui muitas funcionalidades a serem implementadas.
-- O projeto ainda não possui testes automatizados, mas será adicionado em breve.
+## Tecnologias (stack):
+- Docker
+- PHP (Laravel 12)
+- Vue3 + InertiaJs
+- PostgreSQL
+- Redis
+- Tailwindcss
+- Laravel Breeze
