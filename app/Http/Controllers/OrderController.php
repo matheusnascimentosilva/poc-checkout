@@ -15,7 +15,6 @@ class OrderController extends Controller
             $q->where('user_id', Auth::id());
         });
 
-        // Filtro por status (opcional)
         if ($request->status) {
             $query->where('status', $request->status);
         }

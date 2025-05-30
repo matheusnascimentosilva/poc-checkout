@@ -31,6 +31,12 @@ class StripeCheckoutController extends Controller
             'mode' => 'payment',
             'success_url' => route('checkout.success', ['product' => $product->id]),
             'cancel_url' => route('checkout.cancel', ['product' => $product->id]),
+
+            // Aqui está o metadata que você precisa adicionar:
+            'metadata' => [
+                'product_id' => $product->id,
+                'quantity' => $quantity,
+            ],
         ]);
 
         return response()->json(['url' => $session->url]);
